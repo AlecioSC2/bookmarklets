@@ -1,13 +1,75 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+<h1 class="text-6xl text-center mt-5">Bookmarklets</h1>
+<div class="columns-2 flex justify-center gap-8 mt-10 mb-5">
+    <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-md dark:bg-gray-800 dark:border-gray-700">
+        <img class="rounded-t-lg max-w-xs m-auto" src="./aem.png" alt="">
+        <div class="p-5">
+            <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white text-center">Disable WCM Mode</h5>
+            <p class="font-normal text-gray-700 mb-5 dark:text-gray-400t">Removes the editor if present, adds '?wcmmode=disabled' to the URL. To save it, drag and drop the green button to the bookmarks bar.</p>
+            <a href="javascript:(() => {
+    const EDITOR_STRING = '/editor.html';
+    const WCM_MODE_DISABLED_QUERY_PARAM = '?wcmmode=disabled';
+    let url = window.location.href;
+    const hasEditor = url.indexOf(EDITOR_STRING) !== -1;
+    if (hasEditor) {
+        url = url.split(EDITOR_STRING).join('');
+    }
+    const hasWcmModeDisabled = url.indexOf(WCM_MODE_DISABLED_QUERY_PARAM) !== -1;
+    if (hasWcmModeDisabled) return;
+    const urlArray = url.split('#');
+    url = `${urlArray[0]}${WCM_MODE_DISABLED_QUERY_PARAM}${urlArray[1] ? '#' + urlArray[1] : ''}`;
+    if (window.location.href === url) return;
+    window.location.href = url;
+})();" class="text-white bg-emerald-600 mr-2 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Disable WCM Mode
+                <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>            </a>
+            </a>
+            <a href="https://github.com/AlecioSC2/bookmarklets/blob/main/src/disable-wcm-mode.js" class="text-orange-900 bg-orange-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center">
+                Source Code
+                <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a>
+        </div>
+    </div>
+    <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-md dark:bg-gray-800 dark:border-gray-700">
+        <img class="rounded-t-lg max-w-xs m-auto" src="./aem.png" alt="">
+        <div class="p-5">
+            <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white text-center">To Edit Mode</h5>
+            <p class="font-normal text-gray-700 mb-5 dark:text-gray-400">Adds '/editor.html' and removes '?wcmmode=disabled' if present. To save it, drag and drop the green button to the bookmarks bar.</p>
+            <a href="javascript:(() => {
+    const EDITOR_STRING = 'editor.html';
+    const WCM_MODE_DISABLED_QUERY_PARAM = '?wcmmode=disabled';
+    let url = window.location.href;
+    const hasEditor = url.indexOf(EDITOR_STRING) !== -1;
+    if (!hasEditor) {
+        const urlArray = url.split('/');
+        urlArray.splice(3, 0, EDITOR_STRING);
+        url = urlArray.join('/');
+    }
+    const hasWcmModeDisabled = url.indexOf(WCM_MODE_DISABLED_QUERY_PARAM) !== -1;
+    if (hasWcmModeDisabled) {
+        const urlArray = url.split('#');
+        url = urlArray[0].split(WCM_MODE_DISABLED_QUERY_PARAM)[0];
+        url = urlArray[1] ? url + '#' + urlArray[1] : url;
+    }
+    if (window.location.href === url) return;
+    window.location.href = url;
+})();" class="text-white mr-2 bg-emerald-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                To Edit Mode
+                <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>            </a>
+            <a href="https://github.com/AlecioSC2/bookmarklets/blob/main/src/to-edit-mode.js" class="text-orange-900 bg-orange-500	 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Source Code
+                <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="columns-1 flex justify-center"><p>For more useful AEM bookmarklets, visit <a class="text-blue-600 visited:text-purple-600" href="https://glitch.com/~bookmarklet-repo">Dave Hughes's Bookmarlets.</a></p></div>
 </body>
 </html>
